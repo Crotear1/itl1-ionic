@@ -4,12 +4,7 @@
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "lint": "ng lint"
+    "start": "node index"
   },
   "private": true,
   "dependencies": {
@@ -22,8 +17,15 @@
     "@angular/platform-browser-dynamic": "^17.0.2",
     "@angular/router": "^17.0.2",
     "@ionic/angular": "^8.0.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
     "ionicons": "^7.0.0",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.9.7",
     "rxjs": "~7.8.0",
+    "sequelize": "^6.37.3",
+    "sequelize-cli": "^6.6.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
   },
