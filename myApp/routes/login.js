@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const db = require("../models/index");
 
@@ -24,7 +25,7 @@ const router = express.Router();
 passport.use(
   "clientLocal",
   new LocalStrategy((username, password, done) => {
-    User.findOne({ where: { email: username }, raw: false })
+    User.findOne({ where: { username: username }, raw: false })
       .then((user) => {
         if (!user) {
           return done(null, false, { message: "Incorrect username." });
@@ -55,14 +56,14 @@ passport.use(
 // Register API
 router.post("/register", (req, res) => {
   if (req.body.username && req.body.password) {
-    User.findOne({ where: { email: req.body.username }, raw: false })
+    User.findOne({ where: { username: req.body.username }, raw: false })
       .then((user) => {
         if (user) {
           res.status(401).json({ message: "Username already exists" });
         } else {
           const hash = bcrypt.hashSync(req.body.password, saltRounds);
           User.create({
-            email: req.body.username,
+            username: req.body.username,
             password: hash,
             firstName: req.body.firstName,
             lastName: req.body.lastName,
