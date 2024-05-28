@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">register</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+    <ion-item>
+      <ion-label position="floating">E-Mail</ion-label>
+      <ion-input type="email" name="email" ngModel required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Passwort</ion-label>
+      <ion-input type="password" name="password" ngModel required></ion-input>
+    </ion-item>
+
+    <ion-button type="submit" expand="block" [disabled]="!registerForm.valid"
+      >Registrieren</ion-button
+    >
+  </form>
+</ion-content>
