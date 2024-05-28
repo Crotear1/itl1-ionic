@@ -12,13 +12,31 @@
   </ion-header>
   <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
     <ion-item>
+      <ion-label position="floating">Vorname</ion-label>
+      <ion-input type="text" name="firstName" ngModel required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Nachname</ion-label>
+      <ion-input type="text" name="lastName" ngModel required></ion-input>
+    </ion-item>
+
+    <ion-item>
       <ion-label position="floating">E-Mail</ion-label>
-      <ion-input type="email" name="email" ngModel required></ion-input>
+      <ion-input type="email" name="username" ngModel required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Passwort</ion-label>
       <ion-input type="password" name="password" ngModel required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Phone Number</ion-label>
+      <ion-input type="text" name="phone" ngModel required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Stripe Id</ion-label>
+      <ion-input type="text" name="stripeId" ngModel required></ion-input>
     </ion-item>
 
     <ion-button type="submit" expand="block" [disabled]="!registerForm.valid"

@@ -55,6 +55,7 @@ passport.use(
 
 // Register API
 router.post("/register", (req, res) => {
+  console.log(req.body);
   if (req.body.username && req.body.password) {
     User.findOne({ where: { username: req.body.username }, raw: false })
       .then((user) => {
@@ -90,24 +91,24 @@ router.post("/register", (req, res) => {
 });
 
 // Login API
-router.post("/login", (req, res, done) => {
+router.post("/login", (req, res, next) => {
   passport.authenticate("clientLocal", (err, user, info) => {
     if (err) {
-      return done(err); // will generate a 500 error
-    }
-    // Generate a JSON response reflecting authentication status
+      return next(err);
+    } // Pass error to error handling middleware
     if (!user) {
       return res.status(401).json({ success: false, info });
     }
     req.login(user, (loginErr) => {
       if (loginErr) {
-        return done(loginErr);
+        return next(loginErr);
       }
       const payload = { id: req.user.id };
       const token = jwt.sign(payload, process.env.JWT_SECRET);
+
       return res.json({ token });
     });
-  })(req, res, done);
+  })(req, res, next); // Note the extra (req, res, next) here
 });
 
 // Get User API

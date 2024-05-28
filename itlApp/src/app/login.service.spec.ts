@@ -4,12 +4,12 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-export class RegisterService {
+export class LoginService {
   constructor(private http: HttpClient) {}
 
-  register(user: any): Promise<any> {
+  login(user: any): Promise<any> {
     return this.http
-      .post('http://localhost:8101/login/register', user)
+      .post('http://localhost:8101/login/login', user)
       .toPromise();
   }
 }
